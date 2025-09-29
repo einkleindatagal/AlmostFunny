@@ -1,0 +1,228 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
+{
+	"name": "Python 3 & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"installBicep": true,
+			"version": "latest",
+			"bicepVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": true,
+			"installOhMyZshConfig": true,
+			"upgradePackages": true,
+			"username": "automatic",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		},
+		"ghcr.io/devcontainers/features/desktop-lite:1": {
+			"version": "latest",
+			"noVncVersion": "1.6.0",
+			"password": "noPassword",
+			"webPort": "6080",
+			"vncPort": "5901"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "v2"
+		},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"moby": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "v2"
+		},
+		"ghcr.io/devcontainers/features/dotnet:2": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"ppa": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/git-lfs:1": {
+			"autoPull": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"extended": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/java:1": {
+			"installGradle": true,
+			"installMaven": true,
+			"installGroovy": true,
+			"version": "latest",
+			"jdkDistro": "amzn",
+			"gradleVersion": "latest",
+			"mavenVersion": "latest",
+			"antVersion": "latest",
+			"groovyVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "latest",
+			"helm": "latest",
+			"minikube": "latest"
+		},
+		"ghcr.io/devcontainers/features/nix:1": {
+			"multiUser": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"installYarnUsingApt": true,
+			"version": "latest",
+			"pnpmVersion": "latest",
+			"nvmVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/nvidia-cuda:2": {
+			"installCudnn": true,
+			"installCudnnDev": true,
+			"installNvtx": true,
+			"installToolkit": true,
+			"cudaVersion": "12.5",
+			"cudnnVersion": "automatic"
+		},
+		"ghcr.io/devcontainers/features/php:1": {
+			"installComposer": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/ruby:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/rust:1": {
+			"version": "latest",
+			"profile": "complete",
+			"targets": "x86_64-unknown-redox,x86_64-unknown-uefi",
+			"components": "rust-analyzer,rust-src,rustfmt,clippy"
+		},
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest"
+		}
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or the host.
+	"forwardPorts": [
+		5000,
+		5432
+	],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "chmod +x ./.devcontainer/postCreateCommand.sh && ./.devcontainer/postCreateCommand.sh",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				// Development Settings
+				"editor.formatOnSave": true,
+				"editor.formatOnSaveMode": "file",
+				"editor.formatOnPaste": false,
+				"editor.codeActionsOnSave": {
+					"source.fixAll": "explicit",
+					"source.organizeImports": "explicit"
+					// "source.organizeImports": true
+				},
+				"editor.rulers": [
+					80,
+					120
+				],
+				"files.autoSave": "afterDelay",
+				"files.trimTrailingWhitespace": true,
+				"files.associations": {
+					"*.css": "tailwindcss",
+					"*.html": "jinja-html"
+				},
+				"[html]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"[vue]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"python.analysis.diagnosticSeverityOverrides": {
+					// "reportMissingImports": "none"
+				},
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff"
+				},
+				"tailwindCSS.includeLanguages": {
+					"plaintext": "html",
+					"jinja-html": "html"
+				},
+				"markdownlint.config": {
+					"no-duplicate-header": {
+						"allow_different_nesting": true
+					}
+				},
+				// Styling
+				"peacock.showColorInStatusBar": false,
+				"peacock.remoteColor": "#0e9e06",
+				"evenBetterToml.schema.associations": {
+					"pyproject.toml": "https://json.schemastore.org/pyproject.json"
+				},
+				"terminal.integrated.inheritEnv": true,
+				"tailwindCSS.emmetCompletions": true
+			},
+			"extensions": [
+				// Python
+				"charliermarsh.ruff",
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"njpwerner.autodocstring",
+				// Web
+				"achil.vscode-javascript-repl",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"Vue.volar",
+				"bradlc.vscode-tailwindcss",
+				"samuelcolvin.jinjahtml",
+				"WyattFerguson.jinja2-snippet-kit",
+				"oven.bun-vscode",
+				"ritwickdey.LiveServer",
+				"christian-kohler.npm-intellisense",
+				"vitest.explorer",
+				// Git
+				"eamodio.gitlens",
+				"michelemelluso.gitignore",
+				// Markdown
+				"DavidAnson.vscode-markdownlint",
+				"yzhang.markdown-all-in-one",
+				// Dev
+				"johnpapa.vscode-peacock",
+				"ms-vsliveshare.vsliveshare",
+				"naumovs.color-highlight",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"tomoki1207.pdf",
+				"DavidWang.ini-for-vscode",
+				"tamasfe.even-better-toml",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
